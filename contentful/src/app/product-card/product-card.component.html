@@ -1,0 +1,38 @@
+<div class="card" [ngClass]="{ horizontal: type === 'horizontal' }">
+  <div class="card-image">
+    <img
+      alt="shoes store"
+      [src]="product.fields.productImage.fields.file.url"
+    />
+    <span class="card-title" *ngIf="type !== 'horizontal'">{{
+      product.fields.productNamename
+    }}</span>
+  </div>
+  <div [ngClass]="{ 'card-stacked': type === 'horizontal' }">
+    <div class="card-content">
+      <p class="product-card__description">
+        {{ product.fields.description.content[0].content[0].value }}
+      </p>
+      <p class="product-card__price">{{ product.fields.productPrice }}$</p>
+    </div>
+    <div class="card-action">
+      <a
+        *ngIf="!showBuyButton"
+        [routerLink]="['product', product.fields.productName, product.sys.id]"
+      >
+        View product
+      </a>
+      <button
+        class="snipcart-add-item waves-effect waves-light btn-large btn"
+        *ngIf="showBuyButton"
+        [attr.data-item-price]="product.price"
+        [attr.data-item-image]="product.image"
+        [attr.data-item-name]="product.name"
+        [attr.data-item-description]="product.description"
+        [attr.data-item-id]="product.id"
+      >
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>

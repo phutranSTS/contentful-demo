@@ -1,0 +1,16 @@
+<app-layout title="Walking On Air">
+  <p>
+    Here, you'll find everything you need.
+  </p>
+
+  <h3>
+    Products
+  </h3>
+
+  <div class="products-list" *ngIf="products$ | async as products">
+    <div *ngFor="let product of products.items" class="products-list__item">
+      <app-product-card  [product]="product">
+      </app-product-card>
+    </div>
+  </div>
+</app-layout>
